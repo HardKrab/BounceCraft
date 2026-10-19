@@ -33,10 +33,6 @@ public final class BounceSoundInstance extends AbstractTickableSoundInstance {
         tick();
     }
 
-    public MemoryAudioStream stream() {
-        return stream;
-    }
-
     public int entityId() {
         return entityId;
     }

@@ -6,6 +6,7 @@ import dev.stas.bouncecraft.audio.PcmUtil;
 import dev.stas.bouncecraft.audio.WavDecoder;
 import dev.stas.bouncecraft.config.BounceCraftClientConfig;
 import dev.stas.bouncecraft.logic.AudioFormatId;
+import dev.stas.bouncecraft.logic.PlaybackClock;
 import dev.stas.bouncecraft.network.payload.PlayPayload;
 import dev.stas.bouncecraft.network.payload.StopPayload;
 import java.util.Set;
@@ -17,6 +18,7 @@ import net.minecraft.network.chat.Component;
 public final class ClientPlayback {
     private static BounceSoundInstance current;
     private static CachedTrack currentTrack;
+    private static PlaybackClock clock;
     private static PlayPayload pending;
     private static final Set<String> decoding = ConcurrentHashMap.newKeySet();
     public static volatile float uploadProgress = -1f;
@@ -49,6 +51,7 @@ public final class ClientPlayback {
             current = null;
         }
         currentTrack = null;
+        clock = null;
         pending = null;
         status = "";
     }
@@ -57,16 +60,19 @@ public final class ClientPlayback {
         if (current != null && current.isStopped()) {
             current = null;
             currentTrack = null;
+            clock = null;
             status = "";
         }
+        syncClockPause();
         tryStart();
     }
 
     public static int playheadMs() {
-        if (current == null) {
+        if (clock == null) {
             return 0;
         }
-        return current.stream().playheadMs(BounceCraftClientConfig.AUDIO_DELAY_MS.getAsInt());
+        syncClockPause();
+        return clock.playheadMs(Util.getMillis(), BounceCraftClientConfig.AUDIO_DELAY_MS.getAsInt());
     }
 
     public static float radius() {
@@ -83,6 +89,18 @@ public final class ClientPlayback {
 
     public static BounceSoundInstance sound() {
         return current;
+    }
+
+    private static void syncClockPause() {
+        if (clock == null) {
+            return;
+        }
+        long now = Util.getMillis();
+        if (Minecraft.getInstance().isPaused()) {
+            clock.pause(now);
+        } else {
+            clock.resume(now);
+        }
     }
 
     private static void tryStart() {
@@ -116,6 +134,7 @@ public final class ClientPlayback {
         BounceSoundInstance instance = new BounceSoundInstance(play.sourceEntityId(), stream);
         current = instance;
         currentTrack = cached;
+        clock = new PlaybackClock(Util.getMillis(), offsetMs);
         mc.getSoundManager().play(instance);
         status = Component.translatable("hud.bouncecraft.playing", cached.title, String.format("%.0f", cached.bpm)).getString();
         BounceCraft.LOGGER.info("Playing {} from entity {}", cached.title, play.sourceEntityId());

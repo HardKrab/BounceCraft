@@ -1,0 +1,16 @@
+BounceCraft
+Copyright (c) 2026 BounceCraft contributors
+
+The squash/stretch pulse (easing curves, beat-map phase, music-grid phase,
+and opposing-axis scale) is ported from ViceBounce:
+
+  ViceBounce — https://github.com/tek-95/ViceBounce
+  Copyright (c) tek-95
+  Licensed under the MIT License
+
+The MIT terms are in LICENSE and also apply to this port.
+
+This project embeds JLayer 1.0.1 (javazoom) under the GNU Lesser General
+Public License version 2.1. See licenses/jlayer-NOTICE.txt and
+licenses/jlayer-lgpl-2.1.txt. Corresponding source:
+https://repo1.maven.org/maven2/javazoom/jlayer/1.0.1/

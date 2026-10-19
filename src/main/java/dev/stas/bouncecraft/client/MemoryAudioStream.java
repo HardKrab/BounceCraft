@@ -18,15 +18,6 @@ public final class MemoryAudioStream implements AudioStream {
         this.position = Math.max(0, Math.min(pcm.length, skipBytes & ~1));
     }
 
-    public synchronized int playheadMs(int delayMs) {
-        int sampleRate = Math.round(format.getSampleRate());
-        int samples = position / 2 - (int) (delayMs / 1000.0 * sampleRate);
-        if (samples < 0) {
-            samples = 0;
-        }
-        return (int) (samples * 1000L / sampleRate);
-    }
-
     public synchronized boolean ended() {
         return position >= pcm.length;
     }

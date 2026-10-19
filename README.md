@@ -8,7 +8,7 @@ modid: `bouncecraft` · версия: `0.1.0`
 
 ## English
 
-A NeoForge 1.21.1 client+server mod: pick a local audio file, play it from your player as a positional source, and squash-stretch nearby living entities to the beat. Vanilla / no-mod NeoForge clients can still join (payloads are optional; they just will not hear or see the effect). A vanilla client still cannot join a NeoForge server unless that server is vanilla-compatible in other ways.
+A NeoForge 1.21.1 client+server mod: pick a local audio file, play it from your player as a positional source, and squash-stretch nearby living entities to the beat (ViceBounce envelope: squash on the beat, stretch at the midpoint). Playback HUD sits at the **top-right**, offset below vanilla status-effect icons when those are shown. Vanilla / no-mod NeoForge clients can still join (payloads are optional; they just will not hear or see the effect). A vanilla client still cannot join a NeoForge server unless that server is vanilla-compatible in other ways.
 
 See **Usage**, **Config**, **Limits**, and **Building** below. Keybinds are rebindable in *Options → Controls → BounceCraft*.
 
@@ -40,6 +40,8 @@ See **Usage**, **Config**, **Limits**, and **Building** below. Keybinds are rebi
 ```
 
 Положите туда `.ogg` / `.mp3` / `.wav` и выберите трек кнопкой «Играть».
+
+Пока играет трек, статус (название, BPM, загрузка) рисуется **в правом верхнем углу**. Если видны иконки зелий vanilla, оверлей сдвигается ниже них.
 
 ### Команды
 
@@ -73,10 +75,11 @@ See **Usage**, **Config**, **Limits**, and **Building** below. Keybinds are rebi
 
 | Ключ | По умолчанию |
 |---|---|
-| `effectStrength` | 0.35 |
+| `effectStrength` | 0.35 (амплитуда squash/stretch, как у ViceBounce, но чуть сильнее) |
+| `effectEasing` | 1 (0 linear, 1 sine, 2 quadratic, 3 bounce) |
 | `effectEnabled` | true |
 | `cacheMaxMB` | 200 |
-| `audioDelayMs` | 250 (сдвиг визуала относительно буферов OpenAL) |
+| `audioDelayMs` | 0 (сдвиг визуального playhead позже, если пик не совпадает со слышимым битом) |
 
 Есть экран конфига NeoForge: Mods → BounceCraft → Config.
 
@@ -134,7 +137,7 @@ git push origin v0.1.0
 ## Известные ограничения
 
 - **Затухание дальше 16 блоков.** OpenAL/Minecraft для *fixed range* режет дистанцию до 16. Мы ставим `attenuation_distance: 24` в `sounds.json` (variable-range). Если на практике звук обрывается раньше — это известный риск; сервер всё равно режет выдачу по своему `radius`.
-- **Фаза «бит ↔ картинка».** Потоковый `AudioStream` Minecraft буферизует звук (~сотни мс). Визуал берёт playhead из отданных сэмплов минус `audioDelayMs`. Калибровка на слух: крутите `audioDelayMs`.
+- **Фаза «бит ↔ картинка».** Визуальный playhead идёт от настенных часов с момента старта (как MCI position у ViceBounce), а не от write-курсора `AudioStream`. Minecraft на `play()` сразу качает ~4×1 с буферов OpenAL — старый курсор прыгал и замирал, из‑за этого эффект выглядел как медленное покачивание. Если пик всё же не на слышимом бите, крутите `audioDelayMs`.
 - **Синхронизация времени** клиента с сервером обновляется пакетом раз в секунду (~50–100 мс плюс джиттер).
 - **TinyFileDialogs** на Linux без zenity/kdialog и на macOS вне главного потока может не открыться — есть фолбэк-папка `bouncecraft/music/`.
 - **Сломанный файл:** декод в фоне, клиент не должен падать; HUD покажет ошибку.
@@ -143,4 +146,4 @@ git push origin v0.1.0
 
 ## Лицензия
 
-Код мода — MIT (`LICENSE`). JLayer — LGPL-2.1 (`licenses/`).
+Код мода — MIT (`LICENSE`). Кривая пульса (фаза битов, easing, squash/stretch) портирована из [ViceBounce](https://github.com/tek-95/ViceBounce) (MIT, tek-95) — см. `NOTICE`. JLayer — LGPL-2.1 (`licenses/`).

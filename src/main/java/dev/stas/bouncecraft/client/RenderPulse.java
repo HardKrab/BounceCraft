@@ -68,12 +68,15 @@ public final class RenderPulse {
         if (listenerVolume <= 0.01f) {
             return null;
         }
-        float t = PulseMath.timeSinceLastBeatSec(track.beatsMs, ClientPlayback.playheadMs());
-        float env = PulseMath.envelope(t, PulseMath.DEFAULT_TAU_SEC);
         float amplitude = (float) BounceCraftClientConfig.EFFECT_STRENGTH.getAsDouble() * listenerVolume;
-        if (amplitude <= 0.001f || env <= 0.01f) {
+        if (amplitude <= 0.001f) {
             return null;
         }
-        return PulseMath.squashScale(env, amplitude);
+        double phase = PulseMath.phase(track.beatsMs, ClientPlayback.playheadMs(), track.bpm);
+        float[] scale = PulseMath.getScale(phase, amplitude, BounceCraftClientConfig.EFFECT_EASING.getAsInt());
+        if (Math.abs(scale[0] - 1f) < 0.001f && Math.abs(scale[1] - 1f) < 0.001f) {
+            return null;
+        }
+        return scale;
     }
 }
