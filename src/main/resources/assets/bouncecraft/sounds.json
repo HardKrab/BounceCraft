@@ -1,0 +1,12 @@
+{
+  "stream": {
+    "sounds": [
+      {
+        "name": "bouncecraft:silence",
+        "stream": true,
+        "volume": 1.0,
+        "attenuation_distance": 24
+      }
+    ]
+  }
+}

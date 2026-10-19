@@ -1,0 +1,44 @@
+{
+  "key.categories.bouncecraft": "BounceCraft",
+  "key.bouncecraft.toggle_play": "Играть / Стоп",
+  "key.bouncecraft.pick": "Выбрать трек",
+  "key.bouncecraft.toggle_effect": "Переключить эффект",
+
+  "screen.bouncecraft.music": "BounceCraft — папка с музыкой",
+  "screen.bouncecraft.play": "Играть",
+
+  "hud.bouncecraft.preparing": "Готовим трек…",
+  "hud.bouncecraft.prepare_fail": "Не удалось прочитать аудиофайл",
+  "hud.bouncecraft.uploading": "Загрузка %s%%",
+  "hud.bouncecraft.upload_ok": "Загрузка завершена",
+  "hud.bouncecraft.upload_fail": "Ошибка загрузки: %s",
+  "hud.bouncecraft.receiving": "Получаем трек…",
+  "hud.bouncecraft.waiting": "Старт…",
+  "hud.bouncecraft.decoding": "Декодирование…",
+  "hud.bouncecraft.playing": "Играет: %s (%s BPM)",
+
+  "message.bouncecraft.effect_on": "Эффект BounceCraft: вкл",
+  "message.bouncecraft.effect_off": "Эффект BounceCraft: выкл",
+
+  "command.bouncecraft.stop": "BounceCraft остановлен",
+  "command.bouncecraft.bpm": "BPM BounceCraft: %s",
+  "command.bouncecraft.bpm.none": "Сейчас не играет ваш трек BounceCraft",
+  "command.bouncecraft.reload": "Конфиг BounceCraft: radius=%s, maxTrackBytes=%s, maxDurationSec=%s, uploadCooldownSec=%s, maxConcurrentDJs=%s",
+
+  "bouncecraft.configuration.title": "BounceCraft",
+  "bouncecraft.configuration.section.bouncecraft.server.toml": "Сервер",
+  "bouncecraft.configuration.section.bouncecraft.client.toml": "Клиент",
+  "bouncecraft.configuration.radius": "Радиус",
+  "bouncecraft.configuration.maxTrackBytes": "Макс. размер трека (байты)",
+  "bouncecraft.configuration.maxDurationSec": "Макс. длительность (сек)",
+  "bouncecraft.configuration.uploadCooldownSec": "Кулдаун загрузки (сек)",
+  "bouncecraft.configuration.maxConcurrentDJs": "Макс. одновременных DJ",
+  "bouncecraft.configuration.maxUploadsInFlight": "Макс. загрузок одновременно",
+  "bouncecraft.configuration.chunksPerTickPerPlayer": "Чанков за тик на игрока",
+  "bouncecraft.configuration.allowedFormats": "Разрешённые форматы",
+  "bouncecraft.configuration.requirePermissionLevel": "Требуемый уровень прав",
+  "bouncecraft.configuration.effectStrength": "Сила эффекта",
+  "bouncecraft.configuration.effectEnabled": "Эффект включён",
+  "bouncecraft.configuration.cacheMaxMB": "Кэш клиента (МБ)",
+  "bouncecraft.configuration.audioDelayMs": "Задержка звука (мс)"
+}
