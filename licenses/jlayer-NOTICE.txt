@@ -1,0 +1,9 @@
+JLayer 1.0.1 (javazoom:jlayer) is licensed under the GNU Lesser General
+Public License, version 2.1.
+
+This mod bundles JLayer via NeoForge JarJar (META-INF/jarjar) so MP3 files
+can be decoded on the client. The LGPL allows this form of dynamic linking /
+embedded jar; the original JLayer sources remain available on Maven Central.
+
+Project: https://repo1.maven.org/maven2/javazoom/jlayer/1.0.1/
+License text: licenses/jlayer-lgpl-2.1.txt

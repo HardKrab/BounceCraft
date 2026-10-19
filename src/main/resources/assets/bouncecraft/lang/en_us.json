@@ -1,0 +1,44 @@
+{
+  "key.categories.bouncecraft": "BounceCraft",
+  "key.bouncecraft.toggle_play": "Play / Stop",
+  "key.bouncecraft.pick": "Choose track",
+  "key.bouncecraft.toggle_effect": "Toggle bounce effect",
+
+  "screen.bouncecraft.music": "BounceCraft — music folder",
+  "screen.bouncecraft.play": "Play",
+
+  "hud.bouncecraft.preparing": "Preparing track…",
+  "hud.bouncecraft.prepare_fail": "Could not read the audio file",
+  "hud.bouncecraft.uploading": "Uploading %s%%",
+  "hud.bouncecraft.upload_ok": "Upload complete",
+  "hud.bouncecraft.upload_fail": "Upload failed: %s",
+  "hud.bouncecraft.receiving": "Receiving track…",
+  "hud.bouncecraft.waiting": "Starting…",
+  "hud.bouncecraft.decoding": "Decoding…",
+  "hud.bouncecraft.playing": "Playing: %s (%s BPM)",
+
+  "message.bouncecraft.effect_on": "BounceCraft effect: on",
+  "message.bouncecraft.effect_off": "BounceCraft effect: off",
+
+  "command.bouncecraft.stop": "Stopped BounceCraft",
+  "command.bouncecraft.bpm": "BounceCraft BPM set to %s",
+  "command.bouncecraft.bpm.none": "You are not playing a BounceCraft track",
+  "command.bouncecraft.reload": "BounceCraft config: radius=%s, maxTrackBytes=%s, maxDurationSec=%s, uploadCooldownSec=%s, maxConcurrentDJs=%s",
+
+  "bouncecraft.configuration.title": "BounceCraft",
+  "bouncecraft.configuration.section.bouncecraft.server.toml": "Server",
+  "bouncecraft.configuration.section.bouncecraft.client.toml": "Client",
+  "bouncecraft.configuration.radius": "Radius",
+  "bouncecraft.configuration.maxTrackBytes": "Max track bytes",
+  "bouncecraft.configuration.maxDurationSec": "Max duration (sec)",
+  "bouncecraft.configuration.uploadCooldownSec": "Upload cooldown (sec)",
+  "bouncecraft.configuration.maxConcurrentDJs": "Max concurrent DJs",
+  "bouncecraft.configuration.maxUploadsInFlight": "Max uploads in flight",
+  "bouncecraft.configuration.chunksPerTickPerPlayer": "Chunks per tick per player",
+  "bouncecraft.configuration.allowedFormats": "Allowed formats",
+  "bouncecraft.configuration.requirePermissionLevel": "Required permission level",
+  "bouncecraft.configuration.effectStrength": "Effect strength",
+  "bouncecraft.configuration.effectEnabled": "Effect enabled",
+  "bouncecraft.configuration.cacheMaxMB": "Client cache (MB)",
+  "bouncecraft.configuration.audioDelayMs": "Audio delay (ms)"
+}
